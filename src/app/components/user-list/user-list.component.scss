@@ -1,0 +1,69 @@
+.hover-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.table tbody tr {
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: rgba(248, 249, 250, 0.8) !important;
+  }
+}
+
+.btn-dark {
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.btn-group .btn {
+  &.active {
+    background-color: #000 !important;
+    border-color: #000 !important;
+    color: #fff !important;
+  }
+}
+
+// Pagination styling
+::ng-deep ngb-pagination {
+  .pagination {
+    .page-item {
+      .page-link {
+        background-color: #fff;
+        border-color: #000;
+        color: #000;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          background-color: #000;
+          border-color: #000;
+          color: #fff;
+          transform: translateY(-1px);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        &:focus {
+          box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.25);
+        }
+      }
+
+      &.active .page-link {
+        background-color: #000;
+        border-color: #000;
+        color: #fff;
+      }
+
+      &.disabled .page-link {
+        background-color: #f8f9fa;
+        border-color: #dee2e6;
+        color: #6c757d;
+      }
+    }
+  }
+}

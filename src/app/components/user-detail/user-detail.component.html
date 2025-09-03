@@ -1,0 +1,173 @@
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <div class="d-flex align-items-center mb-4">
+        <button type="button" class="btn btn-dark me-3" (click)="goBack()">
+          <i class="bi bi-arrow-left me-1"></i> Back to Users
+        </button>
+        <h1 class="h2 mb-0">User Details</h1>
+      </div>
+
+      <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2 text-muted">Loading user details...</p>
+      </div>
+
+      <div *ngIf="error && !isLoading" class="alert alert-danger" role="alert">
+        <i class="bi bi-exclamation-triangle-fill me-2"></i>
+        {{ error }}
+        <button
+          type="button"
+          class="btn btn-dark btn-sm ms-3"
+          (click)="loadUser(user?.id || 0)"
+        >
+          Try Again
+        </button>
+      </div>
+
+      <div *ngIf="!isLoading && !error && user" class="row">
+        <div class="col-lg-8 mx-auto">
+          <div class="card shadow-sm">
+            <div class="card-header bg-light">
+              <h3 class="card-title mb-0 text-dark">
+                <i class="bi bi-person-circle me-2 text-muted"></i>
+                {{ user.name }}
+              </h3>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 mb-4">
+                  <h5 class="text-dark mb-3">
+                    <i class="bi bi-person-fill me-2 text-muted"></i>
+                    Personal Information
+                  </h5>
+                  <div class="info-group">
+                    <div class="info-item mb-2">
+                      <strong>Full Name:</strong>
+                      <span class="ms-2">{{ user.name }}</span>
+                    </div>
+                    <div class="info-item mb-2">
+                      <strong>Username:</strong>
+                      <span class="ms-2 text-muted"
+                        >&#64;{{ user.username }}</span
+                      >
+                    </div>
+                    <div class="info-item mb-2">
+                      <strong>Email:</strong>
+                      <a
+                        href="mailto:{{ user.email }}"
+                        class="ms-2 text-decoration-none"
+                      >
+                        {{ user.email }}
+                      </a>
+                    </div>
+                    <div class="info-item mb-2">
+                      <strong>Phone:</strong>
+                      <a
+                        href="tel:{{ user.phone }}"
+                        class="ms-2 text-decoration-none"
+                      >
+                        {{ user.phone }}
+                      </a>
+                    </div>
+                    <div class="info-item">
+                      <strong>Website:</strong>
+                      <a
+                        [href]="'http://' + user.website"
+                        target="_blank"
+                        class="ms-2 text-decoration-none"
+                      >
+                        {{ user.website }}
+                        <i class="bi bi-box-arrow-up-right ms-1"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-6 mb-4">
+                  <h5 class="text-dark mb-3">
+                    <i class="bi bi-geo-alt-fill me-2 text-muted"></i>
+                    Address
+                  </h5>
+                  <div class="info-group">
+                    <div class="info-item mb-2">
+                      <strong>Street:</strong>
+                      <span class="ms-2"
+                        >{{ user.address.street }},
+                        {{ user.address.suite }}</span
+                      >
+                    </div>
+                    <div class="info-item mb-2">
+                      <strong>City:</strong>
+                      <span class="ms-2">{{ user.address.city }}</span>
+                    </div>
+                    <div class="info-item mb-2">
+                      <strong>Zipcode:</strong>
+                      <span class="ms-2">{{ user.address.zipcode }}</span>
+                    </div>
+                    <div class="info-item">
+                      <strong>Coordinates:</strong>
+                      <span class="ms-2 text-muted">
+                        {{ user.address.geo.lat }}, {{ user.address.geo.lng }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <h5 class="text-dark mb-3">
+                    <i class="bi bi-building-fill me-2 text-muted"></i>
+                    Company Information
+                  </h5>
+                  <div class="card bg-light">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-4 mb-3">
+                          <div class="info-item">
+                            <strong>Company Name:</strong>
+                            <div class="mt-1">{{ user.company.name }}</div>
+                          </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <div class="info-item">
+                            <strong>Catch Phrase:</strong>
+                            <div class="mt-1 text-muted fst-italic">
+                              {{ user.company.catchPhrase }}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                          <div class="info-item">
+                            <strong>Business:</strong>
+                            <div class="mt-1">{{ user.company.bs }}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="card-footer bg-transparent">
+              <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-dark" (click)="goBack()">
+                  <i class="bi bi-arrow-left me-1"></i> Back to Users
+                </button>
+                <div class="d-flex gap-2">
+                  <a [href]="'mailto:' + user.email" class="btn btn-dark">
+                    <i class="bi bi-envelope me-1"></i> Send Email
+                  </a>
+                  <a [href]="'tel:' + user.phone" class="btn btn-dark">
+                    <i class="bi bi-telephone me-1"></i> Call
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+.info-item {
+  strong {
+    color: #000;
+    font-weight: 600;
+  }
+
+  i {
+    color: #6c757d;
+  }
+}
+
+.btn-dark {
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+}
